@@ -7,13 +7,16 @@ from results.models import Result
 
 # Create your views here.
 
-class QuizListView(ListView):
-    model = Quiz
-    template_name = 'quizes/main.html'
+# class QuizListView(ListView):
+#     model = Quiz
+#     template_name = 'quizes/main.html'
 
+def view(request, *args, **kwargs):
+    quiz = Quiz.objects.all()[1:]
+    return render(request, 'quizes/main.html', {'obj' : quiz})
 
 def quiz_view(request, pk):
-    quiz = Quiz.objects.get(pk=pk)
+    quiz = Quiz.objects.all()[1:]
     return render(request, 'quizes/quiz.html', {'obj' : quiz})
 
 def quiz_data_view(request, pk):
